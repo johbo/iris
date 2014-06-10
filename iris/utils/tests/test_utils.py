@@ -11,8 +11,12 @@ class ImportTests(TestCase):
         self.assertIs(cls, ServiceContainer)
 
     def test_import_object_without_colon(self):
-        self.assertRaises(ValueError, import_object, 'iris.core.container.ServiceContainer')
-        self.assertRaises(ValueError, import_object, 'iris.core.container')
+        self.assertRaises(ImportError, import_object, 'iris.core.container.ServiceContainer')
+
+    def test_allows_to_import_plain_modules(self):
+        import iris.utils as expected_mod
+        mod = import_object('iris.utils')
+        self.assertIs(mod, expected_mod)
 
 
 class UndefinedTests(TestCase):

@@ -22,14 +22,12 @@ Undefined = Undefined()
 
 
 def import_object(module_name, object_path=None):
-    if not object_path:
-        if ':' not in module_name:
-            raise ValueError("cannot import object %r" % module_name)
-        module_name, object_path = module_name.split(':')
-    mod = importlib.import_module(module_name)
-    obj = mod
-    for objname in object_path.split('.'):
-        obj = getattr(obj, objname)
+    if not object_path and ':' in module_name:
+            module_name, object_path = module_name.split(':')
+    obj = importlib.import_module(module_name)
+    if object_path:
+        for objname in object_path.split('.'):
+            obj = getattr(obj, objname)
     return obj
 
 

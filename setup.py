@@ -19,7 +19,7 @@ setup(
     long_description=description,
     include_package_data=True,
     setup_requires=[
-        'Cython>=0.20.1',
+#        'Cython>=0.20.1',
     ],
     install_requires=[
         'docopt>=0.6.1',

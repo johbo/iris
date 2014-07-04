@@ -10,7 +10,7 @@ before_install:
     - if [[ $PYTHON_MAJOR == '3' ]]; then export P="3"; fi
 
 install:
-    - sudo apt-get install -qq cython${P}
+    - sudo apt-get install -qq cython
     - sudo apt-get install -qq zookeeper
     - pip install -r requirements/base.txt
     - pip install .

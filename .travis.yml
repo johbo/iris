@@ -6,10 +6,12 @@ python:
     - 3.4
 
 before_install:
-    - pip install cython
+    - export PYTHON_MAJOR=${TRAVIS_PYTHON_VERSION:0:1}
+    - if [[ $PYTHON_MAJOR == '3' ]]; then export P="3"; fi
 
 install:
-    - sudo apt-get install zookeeper
+    - sudo apt-get install -qq cython${P}
+    - sudo apt-get install -qq zookeeper
     - pip install -r requirements/base.txt
     - pip install .
 
@@ -25,4 +27,3 @@ script:
 
 notifications:
     email: false
-
